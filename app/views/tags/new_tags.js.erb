@@ -1,0 +1,3 @@
+$('#ajax-modal').html('<%= escape_javascript(render :partial => 'tags/new', :locals => {:tags => @tags, :book => @book}) %>');
+showModal('ajax-modal', '400px');
+$('#ajax-modal').addClass('new-tags');

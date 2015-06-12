@@ -1,0 +1,17 @@
+<script type="text/javascript">
+alert("inside tags");
+</script>
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tags.each do |tag| %>
+    <tr>
+      <td><%= tag.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,29 @@
+<h3 class="title"><%= "Search Tags" %></h3>
+<section>
+Search Tags by name:
+  <%= form_tag search_tags_path, id: "" ,:method => 'get' do %>
+  <p>
+    <%= text_field_tag :query, params[:query] ,autocomplete: :off %>
+    <%#= submit_tag "Search", :name => nil %>
+  </p>
+  <% end %>
+</div>
+
+
+<%#= javascript_tag "observeSearchfield('tag_search', 'tagss_for_book', '#{ escape_javascript url_for(:controller => 'book',
+                 :action => 'autocomplete_for_tag',
+                 :object_type => (booked && booked.class.name.underscore),
+                 :object_id => booked
+                  }')" %>
+
+  <div id="tagss_for_book">
+    <%#= principals_check_box_tags('watcher[user_ids][]', users) %>
+  </div>
+
+<% if @tags %>
+<div id="tags_list"> 
+	<%= render partial: "tags" , locals: {tags: @tags } %>
+</div>
+<% end %>
+</section>
+
