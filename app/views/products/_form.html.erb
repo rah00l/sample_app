@@ -19,6 +19,20 @@
     <%= f.label :price %><br>
     <%= f.number_field :price %>
   </div>
+
+  <div class="field">
+    <%= link_to "Search tags to add",{:controller => 'tags', :action => 'new_tags', :product_id => @product, identifier: 'product'},{:remote => true,:method => 'get'}%>
+  </div>
+
+  <div class="field">
+      <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+      <%#= f.text_field :tag_list %>
+    </div>
+
+  <span id="tags_inputs">
+    <%#= tags_text_field(@book, @available_tags) %>
+  </span>
+
   <div class="actions">
     <%= f.submit %>
   </div>
