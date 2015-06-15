@@ -22,13 +22,12 @@
 </div> 
 
 <div class="field">
-  <%= link_to "add tags",{:controller => 'tags', :action => 'new_tags', :book_id => @book },{:remote => true,:method => 'get'}%>
+  <%= link_to "Search tags to add",{:controller => 'tags', :action => 'new_tags', :book_id => @book, identifier: 'book' },{:remote => true,:method => 'get'}%>
 </div>
 
 <div class="field">
     <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%#= f.text_field :tag_list %>
-  </div>
+</div>
   
 <span id="tags_inputs">
   <%#= tags_text_field(@book, @available_tags) %> 
