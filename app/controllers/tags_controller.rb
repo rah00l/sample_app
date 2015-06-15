@@ -18,7 +18,7 @@ class TagsController < ApplicationController
   end
 
   def autocomplete_for_tag
-    @tags = books_for_new_tag
+    @tags = tags_for_new_resource
     render :layout => false
   end
 
@@ -44,7 +44,7 @@ class TagsController < ApplicationController
   end
 
   def new_tags
-    @tags = books_for_new_tag
+    @tags = tags_for_new_resource
   end
     
   # GET /tags/1/edit
@@ -102,29 +102,19 @@ class TagsController < ApplicationController
       params.require(:tag).permit(:name)
     end
 
-    def books_for_new_tag
-      tags = []
-      if !params[:q].blank? #&& @book.present?
-        tags = Tag.where('name LIKE ?', "%#{params[:q]}%")
-      elsif @book.present?
-        tags = @book.tags
-      else
-        tags
-      #   tags = Tag.like(params[:q]).limit(10)
-      #   # tags = User.active.sorted.like(params[:q]).limit(100)
-      end
-      # if params[:q].blank? #&& @project.present?
-        # books = books.sorted
-      # else
-        # require 'debugger'
-        # books = Tag.sorted#.like()
-        # books = User.active.sorted.like(params[:q]).limit(100)
-      # end
-      # if @watched
-      #   users -= @watched.watcher_users
-      # end
+  def tags_for_new_resource
+    tags = []
+    if !params[:q].blank? #&& @book.present?
+      tags = Tag.where('name LIKE ?', "%#{params[:q]}%")
+    elsif params[:object_type] == "book" || @book.present?
+      tags = @book.tags if @book.present?
+    elsif params[:object_type] == "product" || @product.present?
+      tags = @product.tags if @product.present?
+    else
       tags
     end
+    tags
+  end
 
   def find_resouce
     if params[:book_id].present?
