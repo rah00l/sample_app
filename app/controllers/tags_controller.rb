@@ -23,15 +23,8 @@ class TagsController < ApplicationController
   end
 
   def attach_tags
-    @tags = params[:books][:tag_ids] if params[:books].present?
-    # debugger
-    # if params[:watcher].is_a?(Hash)
-    #   user_ids = params[:watcher][:user_ids] || [params[:watcher][:user_id]]
-    #   @users = User.active.where(:id => user_ids).all
-    # end
-    # if @users.blank?
-    #   render :nothing => true
-    # end
+    object_type = params["object_type"].pluralize
+    @tags = params["#{object_type}"][:tag_ids] if params["#{object_type}"].present?
   end
   # GET /tags/1
   # GET /tags/1.json
