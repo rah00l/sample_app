@@ -33,6 +33,14 @@ module ApplicationHelper
                   # :id => "issue_watcher_user_ids_#{user.id}",
                   # :class => "floating"
     # end.join.html_safe
+  def identify_resource(params)
+    if params["identifier"] == "product"
+      return @product,params["identifier"]
+    elsif params["identifier"] == "book"
+      return @book,params["identifier"]
+    else
+
+    end
   end
 
 end
