@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
-  before_action :find_book, only: [:new_tags]
+  before_action :find_resouce, only: [:new_tags]
 
   # GET /tags
   # GET /tags.json
@@ -126,8 +126,12 @@ class TagsController < ApplicationController
       tags
     end
 
-    def find_book
+  def find_resouce
+    if params[:book_id].present?
       @book = Book.find(params[:book_id]) unless params[:book_id].blank?
+    else
+      @product = Product.find(params[:product_id]) unless params[:product_id].blank?
     end
+  end
 
 end
