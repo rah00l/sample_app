@@ -20,19 +20,10 @@ module ApplicationHelper
   def tags_text_field(object, tags)
     formmated_tag_list = tags.map(&:inspect).join(',') unless tags.blank?
     formatted_tag_values = formmated_tag_list.gsub(/"|'/, '')
-    # debugger
-    tag_list = text_field_tag 'book[tag_list]', formatted_tag_values #, c, :id => nil 
+    tag_list = text_field_tag "#{params["object_type"]}[tag_list]", formatted_tag_values #, c, :id => nil
     tag_list.html_safe
-    # tag_list = ''
-    # tags.map do |tag|
-      # c = checked.nil? ? object.watched_by?(user) : checked
-      # book[tag_list]
-      #= f.text_field :tag_list
-      # tag_list = text_field_tag 'book[tag_list]', tag.id, c, :id => nil
-      # content_tag 'label', "#{tag} #{h(user)}".html_safe,
-                  # :id => "issue_watcher_user_ids_#{user.id}",
-                  # :class => "floating"
-    # end.join.html_safe
+  end
+
   def identify_resource(params)
     if params["identifier"] == "product"
       return @product,params["identifier"]
