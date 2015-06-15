@@ -1,18 +1,19 @@
+<% resource_object,resource = identify_resource(params) %>
 <%= form_tag({:controller => 'tags',
               :action => 'attach_tags',
-              :book_id => @book},
+              :object_type => resource,
+              "#{resource}_id" => resource_object},
               :remote => true,
               :method => :post,
               :id => 'new-attache-tag-form') do %>
 
-<p><%= label_tag 'tag_search_for_books' %><%= text_field_tag 'tag_search', nil %></p>
-  <%= javascript_tag "observeSearchfield('tag_search', 'tags_for_books', '#{ escape_javascript url_for(:controller => 'tags',
+<p><%= label_tag "Search Tags for #{resource}" %><%= text_field_tag 'tag_search', nil %></p>
+  <%= javascript_tag "observeSearchfield('tag_search', 'tags_for_resource', '#{ escape_javascript url_for(:controller => 'tags',
                  :action => 'autocomplete_for_tag',
-                 :object_type => (tags && tags.class.name.underscore),
-                 :object_id => tags,
-                 :book_id => @book) }')" %>
-<div id="tags_for_books">
-	<%= principals_check_box_tags 'books[tag_ids][]', tags %>
+                 :object_type => resource,
+                 "#{resource}_id" => resource_object) }')" %>
+<div id="tags_for_resource">
+	<%= principals_check_box_tags "#{resource}[tag_ids][]", tags %>
 </div>
 
 <p class="buttons">
