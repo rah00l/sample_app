@@ -1,2 +1,2 @@
-# spending_tracker
-Stared with spending-Tracker.
+# sample_app
+Stared with Sample-App.
