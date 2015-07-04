@@ -23,6 +23,18 @@ function hideModal(el) {
   modal.dialog("close");
 }
 
+function observeAutocompleteField(fieldId, url, options) {
+  $(document).ready(function() {
+    $('#'+fieldId).autocomplete($.extend({
+      source: url,
+      minLength: 2,
+      search: function(){$('#'+fieldId).addClass('ajax-loading');},
+      response: function(){$('#'+fieldId).removeClass('ajax-loading');}
+    }, options));
+    $('#'+fieldId).addClass('autocomplete');
+  });
+}
+
 function observeSearchfield(fieldId, targetId, url) {
   $('#'+fieldId).each(function() {
     var $this = $(this);
