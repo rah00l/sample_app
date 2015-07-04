@@ -22,6 +22,14 @@ class TagsController < ApplicationController
     render :layout => false
   end
 
+  def search_for_tag
+    @tags = []
+    query = (params[:q] || params[:term]).to_s.strip
+    if query.present?
+      @tags = Tag.where('name LIKE ?', "%#{query}%")
+    end
+    render :layout => false
+  end
   def attach_tags
     object_type = params["object_type"].pluralize
     @tags = params["#{object_type}"][:tag_ids] if params["#{object_type}"].present?

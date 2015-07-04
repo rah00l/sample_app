@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :products
+  resources :movies
 
   get 'home/index'
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
       get 'autocomplete_for_tag'      
       post 'attach_tags'
       get 'new_tags'
+      get 'search_for_tag'
     end    
   end
 
